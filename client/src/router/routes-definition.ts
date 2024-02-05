@@ -5,7 +5,12 @@ const routes_definition: Route[] = [
   {
     path: routes.HOME(),
     loader: () => import("../pages/home.page"),
-    allowsOffline: true,
+    allowsOffline: false,
+  },
+  {
+    path: routes.CONTAINERS(),
+    loader: () => import("../pages/containers.page"),
+    allowsOffline: false,
   },
 ];
 

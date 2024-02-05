@@ -41,6 +41,11 @@ export default function NavigationLayout({ children }: Props) {
       key: "home",
       route: routes.HOME(),
     },
+    {
+      label: t("nav.items.containers.Label"),
+      key: "containers",
+      route: routes.CONTAINERS(),
+    },
   ];
 
   const onlineItems: ItemType[] = [];

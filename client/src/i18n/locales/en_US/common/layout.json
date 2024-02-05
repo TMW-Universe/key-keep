@@ -3,6 +3,9 @@
         "items": {
             "home": {
                 "Label": "Home"
+            },
+            "containers": {
+                "Label": "Containers"
             }
         }
     }

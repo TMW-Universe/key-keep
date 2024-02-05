@@ -1,0 +1,5 @@
+{
+    "Title": "Create container",
+    "Description": "A container can contain multiple accounts. All those accounts will be encrypted using the master password.",
+    "Create": "Create container"
+}
