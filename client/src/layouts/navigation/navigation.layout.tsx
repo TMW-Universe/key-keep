@@ -9,6 +9,9 @@ import LoginButton from "../../components/common/user/login-button";
 import styles from "./navigation.layout.module.pcss";
 import { useTheme } from "../../providers/theming/theme.provider";
 import { Theme } from "@tmw-universe/tmw-universe-types";
+import { useTranslation } from "react-i18next";
+import { Translations } from "../../i18n/translations.enum";
+import { routes } from "../../router/routes";
 
 type Props = {
   children?: JSX.Element | JSX.Element[];
@@ -23,7 +26,15 @@ type ItemType = {
 export default function NavigationLayout({ children }: Props) {
   const navigate = useNavigate();
 
-  const basicItems: ItemType[] = [];
+  const { t } = useTranslation([Translations.LAYOUT]);
+
+  const basicItems: ItemType[] = [
+    {
+      label: t("nav.items.home.Label"),
+      key: "home",
+      route: routes.HOME(),
+    },
+  ];
 
   const onlineItems: ItemType[] = [];
 
