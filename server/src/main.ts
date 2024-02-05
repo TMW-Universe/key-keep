@@ -29,8 +29,8 @@ async function bootstrap() {
 
   if (useOpenApi) {
     const config = new DocumentBuilder()
-      .setTitle('Lectio API')
-      .setDescription('The open books manager API')
+      .setTitle('Key keep API')
+      .setDescription('The open passwords manager API')
       .setVersion('1.0.0')
       .build();
     const document = SwaggerModule.createDocument(app, config);

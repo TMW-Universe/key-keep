@@ -1,4 +1,4 @@
-# Lectio server
+# Key keep server
 
 A server that merges books from different sources and stores user progress, collections and more.
 

@@ -1,3 +1,3 @@
-# Lectio Client
+# Key keep Client
 
-A client for reading books
+A client for storing passwords

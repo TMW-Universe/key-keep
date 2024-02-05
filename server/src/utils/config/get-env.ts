@@ -40,10 +40,6 @@ export const getEnv = (): EnvFile => {
       ),
     },
 
-    warehouseApiKey: env.WAREHOUSE_API_KEY,
-    warehouseHost: env.WAREHOUSE_HOST,
-
-    scrapperApiKeyEncKey: env.SCRAPPER_API_KEY_ENC_KEY,
     https: getBooleanFromString(env.HTTPS, true),
   };
 };
@@ -65,11 +61,6 @@ interface EnvFile {
     configRetryDelay: number;
   };
 
-  warehouseApiKey: string;
-  warehouseHost: string;
-
-  scrapperApiKeyEncKey: string;
-
   https: boolean;
 }
 
@@ -87,11 +78,6 @@ class RawEnvFile {
 
   TMWU_AUTH_HOST: string;
   TMWU_AUTH_CONFIG_RETRY_DELAY?: string;
-
-  WAREHOUSE_API_KEY: string;
-  WAREHOUSE_HOST: string;
-
-  SCRAPPER_API_KEY_ENC_KEY: string;
 
   HTTPS?: string;
 }
