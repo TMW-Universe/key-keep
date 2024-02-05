@@ -7,6 +7,7 @@ import { getEnv } from './utils/config/get-env';
 import { DatabaseModule } from './database/database.module';
 import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { ApiModule } from './api/api.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
       },
     ]),
     DatabaseModule,
+    ApiModule,
   ],
   providers: [
     {
