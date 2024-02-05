@@ -1,4 +1,4 @@
-import { red } from "@ant-design/colors";
+import { lime } from "@ant-design/colors";
 import { Theme } from "@tmw-universe/tmw-universe-types";
 import { ConfigProvider, theme as antdTheme } from "antd";
 import { createContext, useContext, useState } from "react";
@@ -18,7 +18,7 @@ const ThemeContext = createContext<{
 } | null>(null);
 
 const DEFAULT_THEME: ThemeContextType = {
-  primaryColor: red[6],
+  primaryColor: lime[7],
   theme: Theme.LIGHT,
 };
 
