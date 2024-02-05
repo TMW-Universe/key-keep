@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../database.service';
 import { uuid } from '@tmw-universe/tmw-universe-types';
 import { DataFetchEntryObject } from 'data-fetch-manager-entry-service';
-import { Container } from '@prisma/client';
+import { Container, Prisma } from '@prisma/client';
 import { RepositoryOptions } from '../../types/database/repository/repository-options.interface';
 import { generateQueryFromDataEntry } from 'data-fetch-manager-prisma-querier';
 import { CONTAINER_DMD } from '../model-definitions/container.model-definition';
@@ -38,5 +38,16 @@ export class ContainersRepository {
       rows,
       count,
     };
+  }
+
+  async create(
+    data: Prisma.ContainerUncheckedCreateInput,
+    options?: RepositoryOptions,
+  ) {
+    return await (
+      options?.transaction ?? this.databaseService
+    ).container.create({
+      data,
+    });
   }
 }
