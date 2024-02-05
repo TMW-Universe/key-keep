@@ -7,3 +7,60 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model Container {
+  id             String  @id @default(uuid())
+  name           String  @db.VarChar(32)
+  description    String? @db.LongText
+  ownerId        String  @db.VarChar(36)
+  masterPassword String  @db.VarChar(256) // Hashed
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Associations
+  Site Site[]
+}
+
+model Site {
+  id      String  @id @default(uuid())
+  name    String  @db.VarChar(32)
+  address String? @db.VarChar(256)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Associations
+  Container   Container @relation(fields: [containerId], references: [id])
+  containerId String    @db.VarChar(36)
+
+  Account Account[]
+}
+
+model Account {
+  id          String  @id @default(uuid())
+  identifier  String  @db.VarChar(256)
+  description String? @db.LongText
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Associations
+  Site   Site   @relation(fields: [siteId], references: [id])
+  siteId String @db.VarChar(36)
+
+  Password Password[]
+}
+
+model Password {
+  id          String  @id @default(uuid())
+  password    String  @db.VarChar(512) // Encrypted
+  description String? @db.LongText
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Associations
+  Account   Account @relation(fields: [accountId], references: [id])
+  accountId String  @db.VarChar(36)
+}
