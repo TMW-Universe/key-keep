@@ -1,4 +1,4 @@
-import { Button, Divider, Flex, Layout, Menu } from "antd";
+import { Button, Flex, Layout, Menu } from "antd";
 import { Content, Footer, Header } from "antd/es/layout/layout";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
