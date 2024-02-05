@@ -1,0 +1,28 @@
+{
+    "reader-utils": {
+        "notification": {
+            "desktop": {
+                "Text": "Press the ESC key to display the reader utilities"
+            },
+            "mobile": {
+                "Text": "Double tap the screen to display the reader utilities"
+            }
+        },
+        "utilities": {
+            "Title": "Reader utilities",
+            "images-size": {
+                "Text": "Images size"
+            }
+        }
+    },
+    "fast-nav": {
+        "Next-chapter": "Next chapter",
+        "Prev-chapter": "Previous chapter",
+        "Mark-chapter-as-read": "Mark as read"
+    },
+    "indicators": {
+        "marked-as-read": {
+            "Text": "The chapter has been marked as read"
+        }
+    }
+}
