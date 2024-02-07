@@ -48,11 +48,17 @@ export default function CreateContainer({ onClose, open }: Props) {
           <Flex vertical gap={12}>
             <Flex vertical gap={3}>
               <Text>{t("create-form.fields.name.Label")}</Text>
-              <TextFormItem<FormType, "name"> name="name" />
+              <TextFormItem<FormType, "name">
+                name="name"
+                componentProps={{ maxLength: 32, showCount: true }}
+              />
             </Flex>
             <Flex vertical gap={3}>
               <Text>{t("create-form.fields.description.Label")}</Text>
-              <TextAreaFormItem<FormType, "description"> name="description" />
+              <TextAreaFormItem<FormType, "description">
+                name="description"
+                componentProps={{ maxLength: 10000, showCount: true }}
+              />
             </Flex>
           </Flex>
           <Divider />
@@ -70,19 +76,19 @@ export default function CreateContainer({ onClose, open }: Props) {
             />
             <Flex vertical gap={3}>
               <Text>{t("create-form.fields.master-password.Label")}</Text>
-              <PasswordFormItem<
-                FormType,
-                "masterPassword"
-              > name="masterPassword" />
+              <PasswordFormItem<FormType, "masterPassword">
+                name="masterPassword"
+                componentProps={{ maxLength: 128, showCount: true }}
+              />
             </Flex>
             <Flex vertical gap={3}>
               <Text>
                 {t("create-form.fields.repeat-master-password.Label")}
               </Text>
-              <PasswordFormItem<
-                FormType,
-                "repeatMasterPassword"
-              > name="repeatMasterPassword" />
+              <PasswordFormItem<FormType, "repeatMasterPassword">
+                name="repeatMasterPassword"
+                componentProps={{ maxLength: 128, showCount: true }}
+              />
             </Flex>
           </Flex>
         </Form>
