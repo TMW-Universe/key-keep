@@ -1,4 +1,12 @@
-import { Alert, Button, Divider, Flex, Modal, Typography } from "antd";
+import {
+  Alert,
+  Button,
+  Divider,
+  Flex,
+  Modal,
+  Progress,
+  Typography,
+} from "antd";
 import { useTranslation } from "react-i18next";
 import { Translations } from "../../../i18n/translations.enum";
 import { PlusOutlined } from "@ant-design/icons";
@@ -8,6 +16,7 @@ import TextFormItem from "../../common/form/items/text/text.form-item";
 import { InferType, object, string } from "yup";
 import TextAreaFormItem from "../../common/form/items/text/text-area.form-item";
 import PasswordFormItem from "../../common/form/items/text/password.form-item";
+import { evaluatePassword } from "../../../utils/passwords/evaluate-password.util";
 
 const { Text } = Typography;
 
@@ -17,10 +26,16 @@ type Props = {
 };
 
 const FORM_SCHEMA = object({
-  name: string().required(),
+  name: string()
+    .required()
+    .test("length", "text.min-length", (v) => v.length >= 2),
   description: string(),
-  masterPassword: string().required(),
-  repeatMasterPassword: string().required(),
+  masterPassword: string()
+    .required()
+    .test("length", "text.min-length", (v) => v.length >= 12),
+  repeatMasterPassword: string()
+    .required()
+    .test("length", "text.min-length", (v) => v.length >= 12),
 });
 
 type FormType = InferType<typeof FORM_SCHEMA>;
@@ -30,10 +45,19 @@ export default function CreateContainer({ onClose, open }: Props) {
 
   const form = useForm<FormType>();
 
+  const passwordEvaluation = form.formState.masterPassword
+    ? evaluatePassword(form.formState.masterPassword)
+    : null;
+
   return (
     <Modal
       footer={
-        <Button icon={<PlusOutlined />} type="primary">
+        <Button
+          onClick={() => form.submit()}
+          loading={form.isLoading}
+          icon={<PlusOutlined />}
+          type="primary"
+        >
           {t("Create")}
         </Button>
       }
@@ -82,6 +106,10 @@ export default function CreateContainer({ onClose, open }: Props) {
               <PasswordFormItem<FormType, "masterPassword">
                 name="masterPassword"
                 componentProps={{ maxLength: 128, showCount: true }}
+              />
+              <Progress
+                percent={passwordEvaluation?.percent}
+                strokeColor={passwordEvaluation?.color}
               />
             </Flex>
             <Flex vertical gap={3}>

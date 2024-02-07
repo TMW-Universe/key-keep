@@ -1,0 +1,5 @@
+{
+    "text": {
+        "min-length": "The text must be at least {num} characters long"
+    }
+}
