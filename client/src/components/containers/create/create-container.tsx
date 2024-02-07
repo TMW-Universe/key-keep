@@ -57,7 +57,10 @@ export default function CreateContainer({ onClose, open }: Props) {
               <Text>{t("create-form.fields.description.Label")}</Text>
               <TextAreaFormItem<FormType, "description">
                 name="description"
-                componentProps={{ maxLength: 10000, showCount: true }}
+                componentProps={{
+                  maxLength: 10000,
+                  showCount: true,
+                }}
               />
             </Flex>
           </Flex>
