@@ -1,4 +1,4 @@
-import { Button, Divider, Flex, Modal, Typography } from "antd";
+import { Alert, Button, Divider, Flex, Modal, Typography } from "antd";
 import { useTranslation } from "react-i18next";
 import { Translations } from "../../../i18n/translations.enum";
 import { PlusOutlined } from "@ant-design/icons";
@@ -7,6 +7,7 @@ import Form from "react-handled-forms/dist/components/form";
 import TextFormItem from "../../common/form/items/text/text.form-item";
 import { InferType, object, string } from "yup";
 import TextAreaFormItem from "../../common/form/items/text/text-area.form-item";
+import PasswordFormItem from "../../common/form/items/text/password.form-item";
 
 const { Text } = Typography;
 
@@ -45,8 +46,44 @@ export default function CreateContainer({ onClose, open }: Props) {
         <Divider />
         <Form form={form}>
           <Flex vertical gap={12}>
-            <TextFormItem<FormType, "name"> name="name" />
-            <TextAreaFormItem<FormType, "description"> name="description" />
+            <Flex vertical gap={3}>
+              <Text>{t("create-form.fields.name.Label")}</Text>
+              <TextFormItem<FormType, "name"> name="name" />
+            </Flex>
+            <Flex vertical gap={3}>
+              <Text>{t("create-form.fields.description.Label")}</Text>
+              <TextAreaFormItem<FormType, "description"> name="description" />
+            </Flex>
+          </Flex>
+          <Divider />
+          <Alert
+            showIcon
+            type="warning"
+            message={
+              <Text className="text-justify">
+                <p>
+                  {t("create-form.messages.master-password-warning.Message")}
+                </p>
+              </Text>
+            }
+          />
+          <Flex vertical gap={12}>
+            <Flex vertical gap={3}>
+              <Text>{t("create-form.fields.master-password.Label")}</Text>
+              <PasswordFormItem<
+                FormType,
+                "masterPassword"
+              > name="masterPassword" />
+            </Flex>
+            <Flex vertical gap={3}>
+              <Text>
+                {t("create-form.fields.repeat-master-password.Label")}
+              </Text>
+              <PasswordFormItem<
+                FormType,
+                "repeatMasterPassword"
+              > name="repeatMasterPassword" />
+            </Flex>
           </Flex>
         </Form>
       </Flex>

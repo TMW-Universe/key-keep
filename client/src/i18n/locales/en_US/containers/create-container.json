@@ -1,5 +1,26 @@
 {
     "Title": "Create container",
     "Description": "A container can contain multiple accounts. All those accounts will be encrypted using the master password.",
-    "Create": "Create container"
+    "Create": "Create container",
+    "create-form": {
+        "fields": {
+            "name": {
+                "Label": "Name"
+            },
+            "description": {
+                "Label": "Description"
+            },
+            "master-password": {
+                "Label": "Master password"
+            },
+            "repeat-master-password": {
+                "Label": "Repeat master password"
+            }
+        },
+        "messages": {
+            "master-password-warning": {
+                "Message": "The master password will be used to encrypt all passwords before sending them to the server. If you lose this password all your container data will be lost as no master password backup is stored in the server. Be sure to write it properly and to never forget it."
+            }
+        }
+    }
 }
