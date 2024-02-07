@@ -56,18 +56,18 @@ export default function CreateContainer({ onClose, open }: Props) {
             </Flex>
           </Flex>
           <Divider />
-          <Alert
-            showIcon
-            type="warning"
-            message={
-              <Text className="text-justify">
-                <p>
-                  {t("create-form.messages.master-password-warning.Message")}
-                </p>
-              </Text>
-            }
-          />
           <Flex vertical gap={12}>
+            <Alert
+              showIcon
+              type="warning"
+              message={
+                <Text className="text-justify">
+                  <p>
+                    {t("create-form.messages.master-password-warning.Message")}
+                  </p>
+                </Text>
+              }
+            />
             <Flex vertical gap={3}>
               <Text>{t("create-form.fields.master-password.Label")}</Text>
               <PasswordFormItem<
