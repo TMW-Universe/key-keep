@@ -27,7 +27,7 @@ type Props = {
 
 const FORM_SCHEMA = object({
   name: string()
-    .required()
+    .required({ key: "value.required" })
     .test(
       "length",
       { key: "text.min-length", values: { num: 2 } },
@@ -35,14 +35,14 @@ const FORM_SCHEMA = object({
     ),
   description: string(),
   masterPassword: string()
-    .required()
+    .required({ key: "value.required" })
     .test(
       "length",
       { key: "text.min-length", values: { num: 12 } },
       (v) => v.length >= 12
     ),
   repeatMasterPassword: string()
-    .required()
+    .required({ key: "value.required" })
     .test(
       "length",
       { key: "text.min-length", values: { num: 12 } },
