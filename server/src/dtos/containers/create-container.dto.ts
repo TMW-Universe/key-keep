@@ -22,7 +22,7 @@ export class CreateContainerDTO
   description?: string;
 
   @MaxLength(128)
-  @MinLength(10)
+  @MinLength(12)
   @IsString()
   masterPassword: string;
 }
