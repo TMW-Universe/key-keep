@@ -13,7 +13,7 @@ model Container {
   name           String  @db.VarChar(32)
   description    String? @db.LongText
   ownerId        String  @db.VarChar(36)
-  masterPassword String  @db.VarChar(16) // Hashed
+  masterPassword String  @db.VarChar(300) // Hashed
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

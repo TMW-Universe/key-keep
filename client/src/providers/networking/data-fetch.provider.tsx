@@ -66,7 +66,7 @@ export default function DataFetchProvider({ children, queryClient }: Props) {
               {<options.Filters managedFetch={options.managedFetch} />}
             </Col>
             <Col span={24}>
-              {options.managedFetch.useQueryInstance.isFetching ? (
+              {options.managedFetch.useQueryInstance.isLoading ? (
                 <div
                   style={{
                     display: "flex",
