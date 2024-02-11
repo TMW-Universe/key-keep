@@ -28,14 +28,26 @@ type Props = {
 const FORM_SCHEMA = object({
   name: string()
     .required()
-    .test("length", "text.min-length", (v) => v.length >= 2),
+    .test(
+      "length",
+      { key: "text.min-length", values: { num: 2 } },
+      (v) => v.length >= 2
+    ),
   description: string(),
   masterPassword: string()
     .required()
-    .test("length", "text.min-length", (v) => v.length >= 12),
+    .test(
+      "length",
+      { key: "text.min-length", values: { num: 12 } },
+      (v) => v.length >= 12
+    ),
   repeatMasterPassword: string()
     .required()
-    .test("length", "text.min-length", (v) => v.length >= 12),
+    .test(
+      "length",
+      { key: "text.min-length", values: { num: 12 } },
+      (v) => v.length >= 12
+    ),
 });
 
 type FormType = InferType<typeof FORM_SCHEMA>;
@@ -43,7 +55,9 @@ type FormType = InferType<typeof FORM_SCHEMA>;
 export default function CreateContainer({ onClose, open }: Props) {
   const { t } = useTranslation([Translations.CREATE_CONTAINER]);
 
-  const form = useForm<FormType>();
+  const form = useForm<FormType>({
+    objectSchema: FORM_SCHEMA,
+  });
 
   const passwordEvaluation = form.formState.masterPassword
     ? evaluatePassword(form.formState.masterPassword)

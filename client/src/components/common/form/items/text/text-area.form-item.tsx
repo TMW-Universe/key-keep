@@ -2,12 +2,13 @@ import { Input } from "antd";
 import { TextAreaProps } from "antd/es/input";
 import { FormItemOptions, useFormContext } from "react-handled-forms";
 import FormItem from "react-handled-forms/dist/components/form-item";
+import RenderFormErrors from "../../errors/render-form-errors";
 
 export default function TextAreaFormItem<T extends object, K extends keyof T>(
   props: FormItemOptions<T, K, TextAreaProps, string>
 ) {
   const {
-    form: { formState, setValue },
+    form: { formState, setValue, validationErrors },
   } = useFormContext<T>();
 
   return (
@@ -18,6 +19,7 @@ export default function TextAreaFormItem<T extends object, K extends keyof T>(
         onChange={(e) => setValue(props.name, e.target.value as never)}
         {...props.componentProps}
       />
+      <RenderFormErrors errorKeys={validationErrors?.[props.name]} />
     </FormItem>
   );
 }

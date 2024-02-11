@@ -1,11 +1,12 @@
 import { Flex, Typography } from "antd";
 import { useTranslation } from "react-i18next";
 import { Translations } from "../../../../i18n/translations.enum";
+import { red } from "@ant-design/colors";
 
 const { Text } = Typography;
 
 type Props = {
-  errorKeys?: string[];
+  errorKeys?: { key: string; values?: Record<string, string | number> }[];
 };
 
 export default function RenderFormErrors({ errorKeys }: Props) {
@@ -16,7 +17,9 @@ export default function RenderFormErrors({ errorKeys }: Props) {
       {errorKeys && (
         <Flex vertical gap={1}>
           {errorKeys.map((error, i) => (
-            <Text key={i}>{t(error)}</Text>
+            <Text style={{ color: red[4] }} key={i}>
+              {t(error.key, { num: error.values?.num })}
+            </Text>
           ))}
         </Flex>
       )}
