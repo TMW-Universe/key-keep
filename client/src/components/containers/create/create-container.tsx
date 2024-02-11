@@ -17,7 +17,6 @@ import { InferType, object, string } from "yup";
 import TextAreaFormItem from "../../common/form/items/text/text-area.form-item";
 import PasswordFormItem from "../../common/form/items/text/password.form-item";
 import { evaluatePassword } from "../../../utils/passwords/evaluate-password.util";
-import { calculatePasswordScore } from "../../../utils/passwords/calculate-password-score.util";
 
 const { Text } = Typography;
 
