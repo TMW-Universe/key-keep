@@ -17,6 +17,7 @@ import { InferType, object, string } from "yup";
 import TextAreaFormItem from "../../common/form/items/text/text-area.form-item";
 import PasswordFormItem from "../../common/form/items/text/password.form-item";
 import { evaluatePassword } from "../../../utils/passwords/evaluate-password.util";
+import { useCreateContainer } from "../../../hooks/api/containers/use-create-container";
 
 const { Text } = Typography;
 
@@ -64,9 +65,17 @@ type FormType = InferType<typeof FORM_SCHEMA>;
 
 export default function CreateContainer({ onClose, open }: Props) {
   const { t } = useTranslation([Translations.CREATE_CONTAINER]);
+  const { mutateAsync } = useCreateContainer();
 
   const form = useForm<FormType>({
     objectSchema: FORM_SCHEMA,
+    onSubmit: async ({ name, description, masterPassword }) => {
+      await mutateAsync({
+        name,
+        description,
+        masterPassword,
+      });
+    },
   });
 
   const passwordEvaluation = form.formState.masterPassword
