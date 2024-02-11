@@ -1,6 +1,6 @@
 "project_id": ""
 "api_token": ""
-"base_path": "src/i18n/locales"
+"base_path": "client/src/i18n/locales"
 "preserve_hierarchy": true
 
 "files":
