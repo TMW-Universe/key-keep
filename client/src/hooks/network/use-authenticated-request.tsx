@@ -13,11 +13,11 @@ export function useAuthenticatedRequest() {
   if (!isAuthenticated) throw new Error("Authentication error.");
 
   return {
-    request: async <T extends object = object>(
-      config: AxiosRequestConfig<T>,
+    request: async <T extends object = object, K extends object = object>(
+      config: AxiosRequestConfig<K>,
       options?: RequestOptions<T>
     ) => {
-      const res = await authenticatedRequest<T>(config, {
+      const res = await authenticatedRequest<T, K>(config, {
         accessToken,
       });
 

@@ -18,6 +18,8 @@ import TextAreaFormItem from "../../common/form/items/text/text-area.form-item";
 import PasswordFormItem from "../../common/form/items/text/password.form-item";
 import { evaluatePassword } from "../../../utils/passwords/evaluate-password.util";
 import { useCreateContainer } from "../../../hooks/api/containers/use-create-container";
+import { useNavigate } from "react-router-dom";
+import { routes } from "../../../router/routes";
 
 const { Text } = Typography;
 
@@ -66,15 +68,19 @@ type FormType = InferType<typeof FORM_SCHEMA>;
 export default function CreateContainer({ onClose, open }: Props) {
   const { t } = useTranslation([Translations.CREATE_CONTAINER]);
   const { mutateAsync } = useCreateContainer();
+  const navigate = useNavigate();
 
   const form = useForm<FormType>({
     objectSchema: FORM_SCHEMA,
     onSubmit: async ({ name, description, masterPassword }) => {
-      await mutateAsync({
+      const container = await mutateAsync({
         name,
         description,
         masterPassword,
       });
+
+      // Navigate to container
+      navigate(routes.CONTAINER(container.data.id));
     },
   });
 
