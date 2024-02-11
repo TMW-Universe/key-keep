@@ -10,13 +10,14 @@ import {
 import { useTranslation } from "react-i18next";
 import { Translations } from "../../../i18n/translations.enum";
 import { PlusOutlined } from "@ant-design/icons";
-import { useForm } from "react-handled-forms";
+import { generateI18nError, useForm } from "react-handled-forms";
 import Form from "react-handled-forms/dist/components/form";
 import TextFormItem from "../../common/form/items/text/text.form-item";
 import { InferType, object, string } from "yup";
 import TextAreaFormItem from "../../common/form/items/text/text-area.form-item";
 import PasswordFormItem from "../../common/form/items/text/password.form-item";
 import { evaluatePassword } from "../../../utils/passwords/evaluate-password.util";
+import { calculatePasswordScore } from "../../../utils/passwords/calculate-password-score.util";
 
 const { Text } = Typography;
 
@@ -30,7 +31,7 @@ const FORM_SCHEMA = object({
     .required({ key: "value.required" })
     .test(
       "length",
-      { key: "text.min-length", values: { num: 2 } },
+      generateI18nError("text.min-length", { num: 2 }),
       (v) => v.length >= 2
     ),
   description: string(),
@@ -38,14 +39,19 @@ const FORM_SCHEMA = object({
     .required({ key: "value.required" })
     .test(
       "length",
-      { key: "text.min-length", values: { num: 12 } },
+      generateI18nError("text.min-length", { num: 12 }),
       (v) => v.length >= 12
+    )
+    .test(
+      "security",
+      generateI18nError("password.no-secure"),
+      (p: string) => evaluatePassword(p).percent >= 60
     ),
   repeatMasterPassword: string()
     .required({ key: "value.required" })
     .test(
       "length",
-      { key: "text.min-length", values: { num: 12 } },
+      generateI18nError("text.min-length", { num: 12 }),
       (v) => v.length >= 12
     ),
 });

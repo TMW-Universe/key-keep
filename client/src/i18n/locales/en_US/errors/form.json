@@ -4,5 +4,8 @@
     },
     "text": {
         "min-length": "The text must be at least {{num}} characters long"
+    },
+    "password": {
+        "no-secure": "The password is insecure. It must reach at least 60%"
     }
 }
