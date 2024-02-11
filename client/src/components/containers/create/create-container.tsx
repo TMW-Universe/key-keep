@@ -52,6 +52,11 @@ const FORM_SCHEMA = object({
       "length",
       generateI18nError("text.min-length", { num: 12 }),
       (v) => v.length >= 12
+    )
+    .test(
+      "match",
+      generateI18nError("password.no-match"),
+      (v, obj) => v === obj.parent.masterPassword
     ),
 });
 
