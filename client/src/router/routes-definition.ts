@@ -12,6 +12,11 @@ const routes_definition: Route[] = [
     loader: () => import("../pages/containers.page"),
     allowsOffline: false,
   },
+  {
+    path: routes.CONTAINER(":containerId"),
+    loader: () => import("../pages/container.page"),
+    allowsOffline: false,
+  },
 ];
 
 export default routes_definition;
