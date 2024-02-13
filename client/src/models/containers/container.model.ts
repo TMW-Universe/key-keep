@@ -3,7 +3,7 @@ import { InferType, date, object, string } from "yup";
 export const CONTAINER_MODEL = object({
   id: string().required(),
   name: string().required(),
-  description: string(),
+  description: string().nullable(),
   ownerId: string().required(),
 
   createdAt: date().required(),

@@ -4,7 +4,9 @@ import {
   DataType,
 } from 'data-fetch-manager-entry-service';
 
-export const CONTAINER_DMD = new DataModelDefinition<Container>({
+export const CONTAINER_DMD = new DataModelDefinition<
+  Omit<Container, 'masterPassword'>
+>({
   id: {
     dataType: DataType.STRING,
   },
@@ -17,9 +19,6 @@ export const CONTAINER_DMD = new DataModelDefinition<Container>({
     isSearchable: true,
   },
   ownerId: {
-    dataType: DataType.STRING,
-  },
-  masterPassword: {
     dataType: DataType.STRING,
   },
 
